@@ -6,10 +6,6 @@ import React, { useState } from 'react';
 import Button from '../common/Button';
 
 const HomePage = ({navigation}) => {
-
-    const [isSending, setIsSending] = useState(false);
-    const handleSendingButton = () => {
-      setIsSending(!isSending);
     const [isSending, setIsSending] = useState(false);
     const handleSendingButton = () => {
       setIsSending(!isSending);
