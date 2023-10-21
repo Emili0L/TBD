@@ -24,7 +24,7 @@ const WelcomeScreen = ({navigation}) => {
                 <Heading>Willkommen bei PayAFriend</Heading>
                 <CustomText alignCenter>PayAFriend macht es einfach, Geld an deine Freunde zu senden.</CustomText>
                 <View style={styles.buttonWrapper}>
-                    <Button title={"Login"} onPress={() => navigation.navigate("Login")} />
+                    <Button title={"Login"} onPress={() => navigation.navigate("Home")} />
                     <Button title={"Register"} type={"secondary"} onPress={() => navigation.navigate("Register")} />
                 </View>
             </View>
