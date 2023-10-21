@@ -10,6 +10,9 @@ const HomePage = ({navigation}) => {
     const [isSending, setIsSending] = useState(false);
     const handleSendingButton = () => {
       setIsSending(!isSending);
+    const [isSending, setIsSending] = useState(false);
+    const handleSendingButton = () => {
+      setIsSending(!isSending);
     };
     return (
         <View style={styles.container}>
