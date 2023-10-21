@@ -47,7 +47,7 @@ const RegisterScreen = ({ navigation }) => {
                         </View>
                     }
                     {image &&
-                        <View style={{ borderRadius: 999, marginBottom: 50 }}>
+                        <View style={{ borderRadius: 999, marginBottom: 50, flex: 1, justifyContent: "center", alignItems: "center" }}>
                             <Image source={{ uri: image }} style={{ width: 150, height: 150 }} />
                         </View>
                     }
