@@ -11,7 +11,8 @@ const WelcomeScreen = ({navigation}) => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    marginTop: 50
+                    marginTop: 50,
+                    marginBottom: 50
                 }}>
                     <Image
                         style={{
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 24
+        marginTop: 50
     },
     placeholder: {
         backgroundColor: "#eee",
