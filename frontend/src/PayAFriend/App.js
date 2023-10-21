@@ -10,7 +10,6 @@ import PaymentScreen from "./components/pages/PaymentScreen";
 import * as Linking from 'expo-linking';
 import CreatePoolScreen from "./components/pages/CreatePoolScreen";
 import HomePage from './components/HomePage/index.js';
-import HomePage from './components/HomePage/index.js';
 
 const Stack = createNativeStackNavigator();
 

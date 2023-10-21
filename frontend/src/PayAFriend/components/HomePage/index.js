@@ -6,11 +6,10 @@ import React, { useState } from 'react';
 import Button from '../common/Button';
 
 const HomePage = ({navigation}) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleRegister = () => {
-
+    const [isSending, setIsSending] = useState(false);
+    const handleSendingButton = () => {
+      setIsSending(!isSending);
     };
     return (
         <View style={styles.container}>
@@ -25,21 +24,23 @@ const HomePage = ({navigation}) => {
                 </TouchableOpacity>
                 <Text style={StyleSheet.compose(styles.small, styles.white)}>Is it time to</Text>
                 <Text style={StyleSheet.compose(styles.large, styles.yellow)}>PayAFriend?</Text>
-                <Image style={styles.image} source={require('../../assets/arrow-white.png')}/>
-                <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Click to pay</Text>
+                { isSending && (
+                  <View>
+                    <Image style={styles.image} source={require('../../assets/arrow-white.png')}/>
+                    <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Click to pay</Text>
+                  </View>
+                )}
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.buttonWrapper}>
                 <Button
-                    onPress={() => {
-                        console.log('You tapped the button!');
-                    }}
+                    onPress={handleSendingButton}
                     title="Send Money"
                 />
                 <Button
                     onPress={() => {
                         console.log('You tapped the button!');
                     }}
-                    title="Receive Money"
+                    title="Create Pool"
             />
             </View>
         </View>
@@ -55,13 +56,17 @@ const styles = StyleSheet.create({
       },
       textContainer: {
         paddingTop: 50,
-        marginBottom: 20,
       },
-      buttonContainer: {
+      buttonWrapper: {
+        flex:1,
         display: "flex",
         flexDirection: "column",
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        gap: 15,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: 20,
+        paddingRight: 20
       },
       yellow: {
         color: "#FED600"
