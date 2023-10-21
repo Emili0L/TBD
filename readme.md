@@ -18,21 +18,21 @@ Maven
 - Installing -
 Clone the Repository
 
-  git clone https://github.com/yourusername/PayAFriend.git
-  cd PayAFriend
+```git clone https://github.com/yourusername/PayAFriend.git```
+```cd PayAFriend```
 
 - Set Up the Backend (Spring)- 
 Navigate to the backend directory and run:
 
-  cd backend
-  mvn spring-boot:run
+```cd backend```
+```mvn spring-boot:run```
 
 - Set Up the Frontend (React) -
 Open a new terminal window, navigate to the frontend directory, and run:
 
-  cd frontend
-  npm install
-  npm start
+```cd frontend```
+```npm install```
+```npm start```
 
 ## Built With
 - React
