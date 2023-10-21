@@ -3,15 +3,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, TextInput, View , Button, Alert} from 'react-native';
 import React, { useState } from 'react';
-import LoginPage from './components/LoginPage/index.js'
+import LoginScreen from './components/pages/LoginScreen.js';
+import RegisterScreen from './components/pages/RegisterScreen.js';
+import WelcomeScreen from './components/pages/WelcomeScreen.js';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
       <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={LoginPage} />
+          <Stack.Navigator initialRouteName='Welcome'>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
           </Stack.Navigator>
@@ -55,14 +58,7 @@ const HomeScreen = ({navigation}) => {
     );
 }
 
-const WelcomeScreen = ({navigation}) => {
-    return (
-        <View style={styles.container}>
-            <Text>Willkommen</Text>
-            <Button title={"Zurück"} onPress={() => navigation.navigate("Home")} />
-        </View>
-    )
-}
+
 
 const styles = StyleSheet.create({
   container: {
