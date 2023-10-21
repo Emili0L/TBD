@@ -1,0 +1,64 @@
+import { Dimensions, Image, StyleSheet, View} from 'react-native';
+import Button from '../common/Button';
+import CustomText from '../common/Text';
+import Heading from '../common/Heading';
+
+const WelcomeScreen = ({navigation}) => {
+    return (
+        <View style={styles.container}>
+            <View style={styles.contentWrapper}>
+                <View style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: 50
+                }}>
+                    <Image
+                        style={{
+                            height: 250,
+                            width: 250
+                        }}
+                        source={require("../../assets/pay.png")}
+                    ></Image>
+                </View>
+                <Heading>Willkommen bei PayAFriend</Heading>
+                <CustomText alignCenter>PayAFriend macht es einfach, Geld an deine Freunde zu senden.</CustomText>
+                <View style={styles.buttonWrapper}>
+                    <Button title={"Login"} onPress={() => navigation.navigate("Login")} />
+                    <Button title={"Register"} type={"secondary"} onPress={() => navigation.navigate("Register")} />
+                </View>
+            </View>
+        </View>
+    )
+}
+
+const { height, width } = Dimensions.get("window")
+const styles = StyleSheet.create({
+    contentWrapper: {
+        width: width * 0.8,
+        display: "flex",
+        
+    },
+    container: {
+        display: "flex",
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: "center",
+    },
+    buttonWrapper: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 15,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 24
+    },
+    placeholder: {
+        backgroundColor: "#eee",
+        height: height * 0.4,
+        width: "100%"
+    }
+});
+
+export default WelcomeScreen;
