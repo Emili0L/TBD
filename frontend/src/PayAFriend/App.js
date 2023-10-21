@@ -3,7 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, Text, TextInput, View , Button, Alert, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
-import LoginPage from './components/LoginPage/index.js'
+import LoginScreen from './components/pages/LoginScreen.js';
+import RegisterScreen from './components/pages/RegisterScreen.js';
+import WelcomeScreen from './components/pages/WelcomeScreen.js';
 import * as Linking from 'expo-linking';
 
 const Stack = createNativeStackNavigator();
@@ -29,7 +31,8 @@ export default function App() {
                   presentation: "modal",
               }}
           >
-            <Stack.Screen name="Login" component={LoginPage} />
+              <Stack.Screen name="Register" component={RegisterScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Payment" component={PaymentScreen} />
@@ -75,15 +78,6 @@ const HomeScreen = ({navigation}) => {
             <StatusBar style="auto" />
         </View>
     );
-}
-
-const WelcomeScreen = ({navigation}) => {
-    return (
-        <View style={styles.container}>
-            <Text>Willkommen</Text>
-            <Button title={"Zurück"} onPress={() => navigation.navigate("Home")} />
-        </View>
-    )
 }
 const PaymentScreen = ({route, navigation}) => {
     const [poolData, setPoolData] = useState({
