@@ -8,6 +8,7 @@ import RegisterScreen from './components/pages/RegisterScreen.js';
 import WelcomeScreen from './components/pages/WelcomeScreen.js';
 import PaymentScreen from "./components/pages/PaymentScreen";
 import * as Linking from 'expo-linking';
+import CreatePoolScreen from "./components/pages/CreatePoolScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,7 @@ export default function App() {
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Payment" component={PaymentScreen} />
+            <Stack.Screen name="CreatePool" component={CreatePoolScreen} />
           </Stack.Navigator>
       </NavigationContainer>
   );
@@ -73,6 +75,9 @@ const HomeScreen = ({navigation}) => {
                 />
                 <Button title={"Next"} onPress={() => navigation.navigate("Welcome")} />
                 <Button title="Bezahlen" onPress={() => navigation.navigate("Payment", {
+                    userId: "Test"
+                })} />
+                <Button title="Pool erstellen" onPress={() => navigation.navigate("CreatePool", {
                     userId: "Test"
                 })} />
             </View>
