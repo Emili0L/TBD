@@ -15,6 +15,7 @@ const CustomTextInput = ({ placeholder, value, onChangeText }) => {
 const styles = StyleSheet.create({
     input: {
         height: 40,
+        textAlign: "center"
     }
 })
 

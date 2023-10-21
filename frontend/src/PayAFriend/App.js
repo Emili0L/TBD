@@ -24,7 +24,7 @@ export default function App() {
   return (
       <NavigationContainer linking={linking}>
           <Stack.Navigator
-              initialRouteName="Login"
+              initialRouteName="Welcome"
               screenOptions={{
                   cardOverlayEnabled: true,
                   headerShown: false,
