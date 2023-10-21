@@ -7,6 +7,7 @@ import LoginScreen from './components/pages/LoginScreen.js';
 import RegisterScreen from './components/pages/RegisterScreen.js';
 import WelcomeScreen from './components/pages/WelcomeScreen.js';
 import * as Linking from 'expo-linking';
+import HomePage from './components/HomePage/index.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,22 +23,22 @@ export default function App() {
         config
     };
   return (
-      <NavigationContainer linking={linking}>
-          <Stack.Navigator
-              initialRouteName="Login"
-              screenOptions={{
-                  cardOverlayEnabled: true,
-                  headerShown: false,
-                  presentation: "modal",
-              }}
-          >
-              <Stack.Screen name="Register" component={RegisterScreen} />
-              <Stack.Screen name="Login" component={LoginScreen} />
+    <NavigationContainer linking={linking}>
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                cardOverlayEnabled: true,
+                headerShown: false,
+                presentation: "modal",
+            }}
+        >
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" component={HomePage} />
             <Stack.Screen name="Payment" component={PaymentScreen} />
-          </Stack.Navigator>
-      </NavigationContainer>
+        </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
