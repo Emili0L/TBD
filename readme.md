@@ -1,12 +1,15 @@
 # Team TDB - Collabothon 2023
 
 ## PayAFriend Overview
+
 PayAFriend is a revolutionary finance application that simplifies the process of splitting bills and settling dues among friends, colleagues, and acquaintances. It securely stores your payment credentials and allows for quick and easy transactions using NFC.
 
 ## Getting Started
+
 These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
 
 Prerequisites
+
 Node.js
 npm or Yarn
 Java JDK 11 or higher
@@ -20,14 +23,16 @@ Clone the Repository
 
 - Set Up the Backend (Spring)- 
 Navigate to the backend directory and run:
-cd backend
-mvn spring-boot:run
+
+  cd backend
+  mvn spring-boot:run
 
 - Set Up the Frontend (React) -
 Open a new terminal window, navigate to the frontend directory, and run:
-cd frontend
-npm install
-npm start
+
+  cd frontend
+  npm install
+  npm start
 
 ## Built With
 - React
