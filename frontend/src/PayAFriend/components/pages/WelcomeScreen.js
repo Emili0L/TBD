@@ -36,8 +36,10 @@ const { height, width } = Dimensions.get("window")
 const styles = StyleSheet.create({
     contentWrapper: {
         width: width * 0.8,
+        height: height,
         display: "flex",
-        
+        alignItems: "center",
+        justifyContent: "center"
     },
     container: {
         display: "flex",
