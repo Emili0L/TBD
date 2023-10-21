@@ -38,7 +38,7 @@ const HomePage = ({navigation}) => {
                 />
                 <Button
                     onPress={() => {
-                        console.log('You tapped the button!');
+                        navigation.navigate("CreatePool", {userId: 12345});
                     }}
                     title="Create Pool"
             />

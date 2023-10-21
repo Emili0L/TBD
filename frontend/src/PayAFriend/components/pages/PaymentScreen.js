@@ -28,7 +28,7 @@ const PaymentScreen = ({route, navigation}) => {
             >
                 <View style={styles.containerPayment}>
                     <TouchableOpacity style={styles.closeButton} onPress={() => { navigation.navigate("Home") }}>
-                        <Text style={styles.closeButtonText}>Abbrechen</Text>
+                        <Text style={styles.closeButtonText}>Abort</Text>
                     </TouchableOpacity>
                     {
                         poolData.receiverPicture != null ? <></> : <View style={styles.profileImagePlaceholder}></View>
@@ -48,7 +48,7 @@ const PaymentScreen = ({route, navigation}) => {
                     </View>
                     <View style={{width: "80%"}}>
                         <CustomButton
-                            title={`An ${poolData.receiverName} senden`}
+                            title={`Send to ${poolData.receiverName}`}
                             onPress={() => { navigation.navigate("Home") }}
                         />
                     </View>

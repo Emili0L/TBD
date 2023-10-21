@@ -23,7 +23,7 @@ const CreatePoolScreen = ({route, navigation}) => {
             >
                 <View style={styles.containerPayment}>
                     <TouchableOpacity style={styles.closeButton} onPress={() => { navigation.navigate("Home") }}>
-                        <Text style={styles.closeButtonText}>Abbrechen</Text>
+                        <Text style={styles.closeButtonText}>Abort</Text>
                     </TouchableOpacity>
 
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -42,7 +42,7 @@ const CreatePoolScreen = ({route, navigation}) => {
                     </View>
                     <View style={{width: "80%"}}>
                         <CustomButton
-                            title={`Erstellen`}
+                            title={`Create`}
                             onPress={() => { navigation.navigate("Home") }}
                         />
                     </View>

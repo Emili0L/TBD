@@ -27,7 +27,7 @@ export default function App() {
   return (
     <NavigationContainer linking={linking}>
         <Stack.Navigator
-            initialRouteName="Home"
+            initialRouteName="Welcome"
             screenOptions={{
                 cardOverlayEnabled: true,
                 headerShown: false,
@@ -39,6 +39,7 @@ export default function App() {
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Home" component={HomePage} />
             <Stack.Screen name="Payment" component={PaymentScreen} />
+            <Stack.Screen name="CreatePool" component={CreatePoolScreen} />
         </Stack.Navigator>
     </NavigationContainer>
   );
