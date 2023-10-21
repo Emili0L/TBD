@@ -41,11 +41,11 @@ Open a new terminal window, navigate to the frontend directory, and run:
 
 ## Authors
 
-- Sebastian Eggers,
-- Marcel Schmitt,
-- Emin Hadzic,
-- YuChong Zheng,
-- Emilio Lötsch,
+- Sebastian Eggers
+- Marcel Schmitt
+- Emin Hadzic
+- YuChong Zheng
+- Emilio Lötsch
 - Dominik van de Vathorst
 
 
