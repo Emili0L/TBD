@@ -29,7 +29,7 @@ const RegisterScreen = ({ navigation }) => {
                 <View style={styles.contentWrapper}>
                     <View style={styles.formWrapper}>
                         <TouchableOpacity onPress={pickImage}>
-                            <View style={{ marginBottom: 50, flex: 1, justifyContent: "center", alignItems: "center" }}>
+                            <View style={{ marginBottom: 80, flex: 1, justifyContent: "center", alignItems: "center" }}>
                                 {!imageUrl && 
                                     <Image source={require("../../assets/profile.jpg")} style={{ width: 100, height: 100, borderRadius: 999 }} />
                                 }
