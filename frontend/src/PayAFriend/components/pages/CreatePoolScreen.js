@@ -18,12 +18,12 @@ const CreatePoolScreen = ({route, navigation}) => {
             style={{ flex: 1 }}
         >
             <ScrollView
-                keyboardShouldPersistTaps="handled"
+                keyboardShouldPersistTaps="always"
                 contentContainerStyle={{ flexGrow: 1 }}
             >
                 <View style={styles.containerPayment}>
                     <TouchableOpacity style={styles.closeButton} onPress={() => { navigation.navigate("Home") }}>
-                        <Text style={styles.closeButtonText}>Zurück</Text>
+                        <Text style={styles.closeButtonText}>Abbrechen</Text>
                     </TouchableOpacity>
 
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
