@@ -1,8 +1,7 @@
 import React,{ useState } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
 import Input from '../common/Input.js';
 import paypalIcon from '../../assets/paypal-icon.png';
-import Circle from '../common/Circle.js'
 
 
 const LoginPage = ({navigation}) => {
@@ -21,15 +20,19 @@ const LoginPage = ({navigation}) => {
     return (
         <View style={{ height: '100%', marginTop: 10 }}>
             <View style={styles.container}>
-                <Circle>
-                    <Text style={styles.text}>Hello</Text>
-                </Circle>
+
             </View>
                 <View style={{ padding: 30, height: '57%' }}>
                     <View style={{ width: '100%', flex: 1, justifyContent: 'center' }}>
-                        <Input
+                        <TextInput
                             style={{
                                 borderColor: onEmailInputFocus ? '#169BD7' : '#C3C8CC',
+                                width: "200px",
+                                height: "40px",
+                                marginTop: "16px",
+                                borderWidth: 1,
+                                borderRadius: 10,
+                                padding: 10,
                             }}
                             placeholder={hasPhoneNumber ? 'Phone number' : 'Email'}
                             placeholderTextColor="#C3C8CC"
@@ -40,10 +43,15 @@ const LoginPage = ({navigation}) => {
                             keyboardType={hasPhoneNumber ? 'numeric' : 'email-address'}
                         />
                         <View style={{ flexDirection: 'row', marginTop: 20, width: '100%' }}>
-                            <Input
+                            <TextInput
                                 style={{
                                     borderColor: onPasswordInputFocus ? '#169BD7' : '#C3C8CC',
                                     width: '75%',
+                                    height: "40px",
+                                    marginTop: "16px",
+                                    borderWidth: 1,
+                                    borderRadius: 10,
+                                    padding: 10,
                                 }}
                                 placeholder="Password"
                                 placeholderTextColor="#C3C8CC"

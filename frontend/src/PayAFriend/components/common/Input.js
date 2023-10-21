@@ -1,16 +1,19 @@
-import { TextInput } from 'react-native';
-import styled from 'styled-components';
+import { StyleSheet, TextInput, View } from 'react-native';
 
-const Input = styled(TextInput)`
-    height: 40px;
-    margin-top: 16px;
-    font-size: 20px;
-    border-radius: ${props => (props.round ? '4px' : 0)};
-    border-width: ${props => (props.round ? '1px' : 0)};
-    border-bottom-width: 1px;
-    padding: 8px;
-    border-color: #C3C8CC;
-    font-family: HKGrotesk-regular;
-`;
+const Input = () => {
+    return (
+        <View>
+            <TextInput styles={styles.input}></TextInput>
+        </View>
+    )
+} 
+    
+
+const styles = StyleSheet.create({
+    input: {
+
+    }
+  })
+
 
 export default Input;
