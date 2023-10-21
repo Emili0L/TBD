@@ -12,15 +12,7 @@ const HomePage = ({navigation}) => {
     };
     return (
         <View style={styles.container}>
-            <View style={StyleSheet.compose(styles.textContainer, styles.plane)}>
-                <TouchableOpacity
-                    styles={styles.button}
-                    title="Settings"
-                    color="#002E3F"
-                    borderWidth="5"
-                    borderColor="#FAFAFA"
-                >
-                </TouchableOpacity>
+            <TouchableOpacity style={StyleSheet.compose(styles.textContainer, styles.plane)} onPress={handleSendingButton}>
                 <Text style={StyleSheet.compose(styles.small, styles.white)}>Is it time to</Text>
                 <Text style={StyleSheet.compose(styles.large, styles.yellow)}>PayAFriend?</Text>
                 { isSending && (
@@ -29,7 +21,7 @@ const HomePage = ({navigation}) => {
                     <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Scan tag</Text>
                   </View>
                 )}
-            </View>
+            </TouchableOpacity>
             <View style={styles.buttonWrapper}>
                 <Button
                     onPress={handleSendingButton}
