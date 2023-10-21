@@ -6,12 +6,12 @@ import React, { useState } from 'react';
 import Button from '../common/Button';
 
 const HomePage = ({navigation}) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleRegister = () => {
-
+    
+    const [isReceiving, setReceive] = useState(false);
+    const handleReceiveButton = () => {
+        setReceive(!isReceiving)
     };
+
     return (
         <View style={styles.container}>
             <View style={StyleSheet.compose(styles.textContainer, styles.plane)}>
@@ -25,20 +25,21 @@ const HomePage = ({navigation}) => {
                 </TouchableOpacity>
                 <Text style={StyleSheet.compose(styles.small, styles.white)}>Is it time to</Text>
                 <Text style={StyleSheet.compose(styles.large, styles.yellow)}>PayAFriend?</Text>
-                <Image style={styles.image} source={require('../../assets/arrow-white.png')}/>
-                <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Click to pay</Text>
+                { isReceiving && (
+                    <View>
+                        <Image style={styles.image} source={require('../../assets/arrow-white.png')}/>
+                        <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Click to pay</Text>
+                    </View>
+                )}
+                
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.buttonWrapper}>
                 <Button
-                    onPress={() => {
-                        console.log('You tapped the button!');
-                    }}
+                    onPress={handleReceiveButton}
                     title="Send Money"
                 />
                 <Button
-                    onPress={() => {
-                        console.log('You tapped the button!');
-                    }}
+                    onPress={handleReceiveButton}
                     title="Receive Money"
             />
             </View>
@@ -53,16 +54,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
       },
+      plane: {
+        backgroundColor: '#002E3F',
+        alignSelf: 'stretch', // makes the plane stretch to fill the parent width
+        height: "70%"
+      },
       textContainer: {
         paddingTop: 50,
-        marginBottom: 20,
       },
-      buttonContainer: {
+      buttonWrapper: {
+        alignSelf: 'stretch', // makes the plane stretch to fill the parent width
+        height: "30%",
         display: "flex",
+        flex: 1,
         flexDirection: "column",
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      },
+        gap: 15,
+        width: "100%",
+        paddingLeft: 20,
+        paddingRight: 20,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#FAFAFA",
+    },
       yellow: {
         color: "#FED600"
       },
@@ -87,12 +100,6 @@ const styles = StyleSheet.create({
       },
       mt20: {
         marginBottom:-1000
-      },
-      plane: {
-        backgroundColor: '#002E3F',
-        alignSelf: 'stretch', // makes the plane stretch to fill the parent width
-        padding: 10,
-        height: "70%"
       },
       buttonContainer: {
         marginBottom: 10, // spaces the buttons
