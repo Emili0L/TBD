@@ -22,8 +22,8 @@ const WelcomeScreen = ({navigation}) => {
                         source={require("../../assets/pay.png")}
                     ></Image>
                 </View>
-                <Heading>Willkommen bei PayAFriend</Heading>
-                <CustomText alignCenter>PayAFriend macht es einfach, Geld an deine Freunde zu senden.</CustomText>
+                <Heading>Welcome PayAFriend</Heading>
+                <CustomText alignCenter>PayAFriend makes it easy to transfer money to your friends</CustomText>
                 <View style={styles.buttonWrapper}>
                     <Button title={"Login"} onPress={() => navigation.navigate("Login")} />
                     <Button title={"Register"} type={"secondary"} onPress={() => navigation.navigate("Register")} />

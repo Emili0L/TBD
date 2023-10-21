@@ -6,7 +6,7 @@ import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 
 const RegisterScreen = ({ navigation }) => {
-    const [image, setImage] = useState()
+    const [image, setImage] = useState(null)
     const [username, setUsername] = useState("")
 
     const pickImage = async () => {
@@ -17,8 +17,6 @@ const RegisterScreen = ({ navigation }) => {
             aspect: [4, 3],
             quality: 1,
         });
-
-        console.log(result);
 
         if (!result.canceled) {
             setImage(result.assets[0].uri);
