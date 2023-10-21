@@ -27,7 +27,7 @@ const HomePage = ({navigation}) => {
                 { isSending && (
                   <View>
                     <Image style={styles.image} source={require('../../assets/arrow-white.png')}/>
-                    <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Click to pay</Text>
+                    <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Scan tag</Text>
                   </View>
                 )}
             </View>
