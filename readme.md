@@ -14,8 +14,9 @@ Maven
 
 - Installing -
 Clone the Repository
-git clone https://github.com/yourusername/PayAFriend.git
-cd PayAFriend
+
+```git clone https://github.com/yourusername/PayAFriend.git```
+```cd PayAFriend```
 
 - Set Up the Backend (Spring)- 
 Navigate to the backend directory and run:
