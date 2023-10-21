@@ -9,6 +9,7 @@ import WelcomeScreen from './components/pages/WelcomeScreen.js';
 import PaymentScreen from "./components/pages/PaymentScreen";
 import * as Linking from 'expo-linking';
 import CreatePoolScreen from "./components/pages/CreatePoolScreen";
+import HomePage from './components/HomePage/index.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,19 +27,18 @@ export default function App() {
   return (
       <NavigationContainer linking={linking}>
           <Stack.Navigator
-              initialRouteName="Welcome"
+              initialRouteName="Login"
               screenOptions={{
                   cardOverlayEnabled: true,
                   headerShown: false,
                   presentation: "modal",
               }}
           >
-            <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Register" component={RegisterScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" component={HomePage} />
             <Stack.Screen name="Payment" component={PaymentScreen} />
-            <Stack.Screen name="CreatePool" component={CreatePoolScreen} />
           </Stack.Navigator>
       </NavigationContainer>
   );
