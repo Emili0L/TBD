@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Alert, Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import CustomButton from '../common/Button.js'
@@ -5,13 +6,15 @@ import { useUser } from "../../context/UserContext";
 
 
 const PaymentScreen = ({route, navigation}) => {
-    const senderId = useUser();
-    const receiverId = route.userId;
+    const senderId = useUser().userId !== null ? useUser().userId : 2;
+    const {userId} = route.params;
+    const receiverId = userId;
     const [poolData, setPoolData] = useState({
         receiverId: null,
         receiverName: "Loading",
         receiverPicture: null,
-        paymentAmount: 999,
+        paymentAmount: 0,
+        poolId: null,
     });
     const handleAmountChange = (value) => {
         setPoolData(({ ...poolData, paymentAmount: !isNaN(parseFloat(value)) ? parseFloat(value): 0 }));
@@ -25,6 +28,68 @@ const PaymentScreen = ({route, navigation}) => {
             ]
         )
     }
+    const showErrorAlert = () => {
+        Alert.alert(
+            "Oh... ☹️",
+            "something must have gone wrong, try again later.",
+            [
+                {text: "Try Again", onPress: () => navigation.navigate("Payment", {userId: receiverId})},
+                {text: "Go Back", onPress: () => navigation.navigate("Home")}
+            ]
+        )
+    }
+    const getSessionData = async () => {
+        try {
+            console.log(receiverId);
+            const response = await axios.get(
+                `http://172.16.220.49:8080/sessions/${receiverId}`
+            )
+            console.log(response.data, response.status);
+            if (response.status !== 200) {
+                showErrorAlert();
+            }
+            else {
+                return response.data;
+            }
+        }
+        catch (error) {
+            showErrorAlert();
+        }
+    }
+
+    const sendPayment = async () => {
+        try {
+            console.log(`http://172.16.220.49:8080/sessions/${poolData.poolId}/sendmoney/${senderId}/${receiverId}/${poolData.paymentAmount}`);
+            const response = await axios.get(
+                `http://172.16.220.49:8080/sessions/${poolData.poolId}/sendmoney/${senderId}/${receiverId}/${poolData.paymentAmount}`,
+            )
+            console.log(response.data, response.status);
+            if (response.status !== 200) {
+                showErrorAlert();
+            }
+            else {
+                showSuccessAlert();
+            }
+        }
+        catch (error) {
+            showErrorAlert();
+        }
+    }
+    useEffect(() => {
+        getSessionData().then((data) => {
+            console.log(data);
+            setPoolData(
+                {
+                    ...poolData,
+                    receiverId: data.receiver.id,
+                    receiverName: data.receiver.name,
+                    receiverPicture: `http://172.16.220.49:8080/image/${data.receiver.imageId}`,
+                    paymentAmount: data.session.amountTobePayedLeft,
+                    poolId: data.session.sessionID
+                }
+            )
+        })
+    }, []);
     return (
         <KeyboardAvoidingView
             keyboardShouldPersistTaps="handled"
@@ -58,7 +123,7 @@ const PaymentScreen = ({route, navigation}) => {
                     <View style={{width: "80%"}}>
                         <CustomButton
                             title={`Send to ${poolData.receiverName}`}
-                            onPress={showSuccessAlert}
+                            onPress={sendPayment}
                         />
                     </View>
                 </View>
