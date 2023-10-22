@@ -16,11 +16,17 @@ public class UserService {
     public User createUser(User user) {return userRepository.save(user);
     }
 
+/*    public User updateUser(User user) {
+        Optional<User> thisUser = userRepository.findById(user.getId());
+
+        if (thisUser.isPresent()) {
+
+        }
+
+        return userRepository.save(user);
+    }*/
+
     public Optional<User> findUserById(long userId) {
         return userRepository.findById(userId);
-    }
-
-    public User updateUser(User user) {
-        return userRepository.save(user);
     }
 }

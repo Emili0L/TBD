@@ -1,9 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, TextInput, View , Alert, TouchableOpacity, Image} from 'react-native';
-import React, { useState } from 'react';
-import Button from '../common/Button';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import Button from "../common/Button";
+import { useUser } from "../../context/UserContext";
 
 const HomePage = ({navigation}) => {
     const [isSending, setIsSending] = useState(false);
@@ -45,60 +43,63 @@ const HomePage = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      },
-      textContainer: {
-        paddingTop: 50,
-      },
-      buttonWrapper: {
-        flex:1,
-        display: "flex",
-        flexDirection: "column",
-        gap: 15,
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        paddingLeft: 20,
-        paddingRight: 20
-      },
-      yellow: {
-        color: "#FED600"
-      },
-      white: {
-        color: "#FAFAFA"
-      },
-      image: {
-        marginTop: -80,
-        marginLeft: -50,
-        transform: [
-            { rotate: '280deg' } // rotate by 45 degrees
-          ]
-      },
-      small: {
-        fontSize: 20,
-        textAlign: 'center',
-      },
-      large: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        textAlign: 'center',
-      },
-      mt20: {
-        marginBottom:-1000
-      },
-      plane: {
-        backgroundColor: '#002E3F',
-        alignSelf: 'stretch', // makes the plane stretch to fill the parent width
-        padding: 10,
-        height: "70%"
-      },
-      buttonContainer: {
-        marginBottom: 10, // spaces the buttons
-      },
-})
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  userIdText: {
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  textContainer: {
+    paddingTop: 50,
+  },
+  buttonWrapper: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    gap: 15,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  yellow: {
+    color: "#FED600",
+  },
+  white: {
+    color: "#FAFAFA",
+  },
+  image: {
+    marginTop: -80,
+    marginLeft: -50,
+    transform: [{ rotate: "280deg" }],
+  },
+  small: {
+    fontSize: 20,
+    textAlign: "center",
+  },
+  large: {
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  mt20: {
+    marginBottom: -1000,
+  },
+  plane: {
+    backgroundColor: "#002E3F",
+    alignSelf: "stretch",
+    padding: 10,
+    height: "70%",
+  },
+  buttonContainer: {
+    marginBottom: 10,
+  },
+});
 
 export default HomePage;

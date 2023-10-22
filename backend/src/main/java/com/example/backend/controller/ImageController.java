@@ -40,7 +40,7 @@ public class ImageController {
                 image.setData(imageData);
                 Image thisImage = imageRepository.save(image);
                 user.get().setImageId(thisImage.getId());
-                userService.updateUser(user.get());
+                userService.createUser(user.get());
 
                 return "Die Datei wurde erfolgreich hochgeladen und in der Datenbank gespeichert.";
             } catch (IOException e) {

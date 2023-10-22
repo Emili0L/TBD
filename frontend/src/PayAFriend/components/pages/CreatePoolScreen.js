@@ -1,15 +1,63 @@
-import { Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import axios from "axios";
+import { Alert, Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import CustomButton from '../common/Button.js'
+import { useUser } from "../../context/UserContext";
 
 
-const CreatePoolScreen = ({route, navigation}) => {
+const CreatePoolScreen = ({navigation}) => {
+    const userId = useUser();
     const [poolAmount, setPoolAmount] = useState(0);
     const handleAmountChange = (value) => {
         setPoolAmount( !isNaN(parseFloat(value)) ? parseFloat(value): 0);
     }
+    const showSuccessAlert = () => {
+        Alert.alert(
+            "Success! 🥳",
+            `Successfully created money pool.`,
+            [
+                {text: "Close", onPress: () => navigation.navigate("Home")}
+            ]
+        )
+    }
 
-    const { userId } = route.params;
+    const showErrorAlert = () => {
+        Alert.alert(
+            "Oh... ☹️",
+            "something must have gone wrong, try again later.",
+            [
+                {text: "Back", onPress: () => navigation.navigate("CreatePool")},
+                {text: "Go Back", onPress: () => navigation.navigate("Home")}
+            ]
+        )
+    }
+
+    const apiCall = async () => {
+        try {
+            const response = await axios.post(
+                "http://172.16.220.49:8080/sessions",
+                {
+                    amountTobePayedLeft: poolAmount,
+                    receiverID: userId,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            )
+            console.log(response.data, response.status);
+            if (response.status !== 200) {
+                showErrorAlert();
+            }
+            else {
+                showSuccessAlert();
+            }
+        }
+        catch (error) {
+            showErrorAlert();
+        }
+    }
 
     return (
         <KeyboardAvoidingView
@@ -43,7 +91,7 @@ const CreatePoolScreen = ({route, navigation}) => {
                     <View style={{width: "80%"}}>
                         <CustomButton
                             title={`Create`}
-                            onPress={() => { navigation.navigate("Home") }}
+                            onPress={apiCall}
                         />
                     </View>
                 </View>
