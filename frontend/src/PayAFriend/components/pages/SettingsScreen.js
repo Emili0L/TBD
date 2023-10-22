@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, Modal, TextInput, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, Modal, TouchableOpacity } from 'react-native';
+import CustomTextInput from '../common/TextInput';
 import Button from '../common/Button';
 
 const SettingsScreen = ({ navigation }) => {
@@ -69,8 +70,8 @@ const SettingsScreen = ({ navigation }) => {
             onRequestClose={togglePayPal}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text>PayPal</Text>
-                    <TextInput
+                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>PayPal</Text>
+                    <CustomTextInput
                         style={styles.modalText}
                         onChangeText={handlePaypalChange}
                         value={inputPaypal}
@@ -99,8 +100,8 @@ const SettingsScreen = ({ navigation }) => {
           onRequestClose={toggleBank}>
           <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                  <Text>Bank</Text>
-                  <TextInput
+                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>Bank</Text>
+                  <CustomTextInput
                       style={styles.modalText}
                       onChangeText={handleBankChange}
                       value={inputBank}
@@ -136,6 +137,7 @@ const SettingsScreen = ({ navigation }) => {
               {renderBankingModal()}
               {renderPayPalModal()}
             </View>
+            <Button title="Back" onPress={() => navigation.navigate("Home")} style={{ width: "100%" }} />
         </View>
     )
 }
