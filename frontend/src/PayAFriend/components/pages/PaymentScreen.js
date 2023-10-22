@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { Alert, Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import CustomButton from '../common/Button.js'
 
@@ -13,7 +13,15 @@ const PaymentScreen = ({route, navigation}) => {
     const handleAmountChange = (value) => {
         setPoolData(({ ...poolData, paymentAmount: !isNaN(parseFloat(value)) ? parseFloat(value): 0 }));
     }
-
+    const showSuccessAlert = () => {
+        Alert.alert(
+            "Success! 🥳",
+            `Successfully send money to ${poolData.receiverName}.`,
+            [
+                {text: "Close", onPress: () => navigation.navigate("Home")}
+            ]
+        )
+    }
     const { userId } = route.params;
 
     return (
@@ -49,7 +57,7 @@ const PaymentScreen = ({route, navigation}) => {
                     <View style={{width: "80%"}}>
                         <CustomButton
                             title={`Send to ${poolData.receiverName}`}
-                            onPress={() => { navigation.navigate("Home") }}
+                            onPress={showSuccessAlert}
                         />
                     </View>
                 </View>

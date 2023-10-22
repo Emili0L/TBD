@@ -30,16 +30,15 @@ export default function App() {
             initialRouteName="Welcome"
             screenOptions={{
                 cardOverlayEnabled: true,
-                headerShown: false,
-                presentation: "modal",
+                headerShown: false
             }}
         >
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Home" component={HomePage} />
-            <Stack.Screen name="Payment" component={PaymentScreen} />
-            <Stack.Screen name="CreatePool" component={CreatePoolScreen} />
+            <Stack.Screen name="Payment" component={PaymentScreen} options={{presentation: "modal"}} />
+            <Stack.Screen name="CreatePool" component={CreatePoolScreen} options={{presentation: "modal"}} />
         </Stack.Navigator>
     </NavigationContainer>
   );
