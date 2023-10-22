@@ -12,6 +12,12 @@ const HomePage = ({navigation}) => {
     };
     return (
         <View style={styles.container}>
+            <Button
+              title="Settings"
+              onPress={() => {
+                navigation.navigate("Settings", {userId: 12345});
+            }}
+            />
             <TouchableOpacity style={StyleSheet.compose(styles.textContainer, styles.plane)} onPress={handleSendingButton}>
                 <Text style={StyleSheet.compose(styles.small, styles.white)}>Is it time to</Text>
                 <Text style={StyleSheet.compose(styles.large, styles.yellow)}>PayAFriend?</Text>
@@ -32,7 +38,7 @@ const HomePage = ({navigation}) => {
                         navigation.navigate("CreatePool", {userId: 12345});
                     }}
                     title="Create Pool"
-            />
+                />
             </View>
         </View>
     );
