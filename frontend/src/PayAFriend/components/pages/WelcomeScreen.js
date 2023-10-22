@@ -27,6 +27,7 @@ const WelcomeScreen = ({navigation}) => {
                 <View style={styles.buttonWrapper}>
                     <Button title={"Login"} onPress={() => navigation.navigate("Home")} />
                     <Button title={"Register"} type={"secondary"} onPress={() => navigation.navigate("Register")} />
+                    <Button title={"test"} type={"secondary"} onPress={() => navigation.navigate("Payment", {userId: 2})} />
                 </View>
             </View>
         </View>

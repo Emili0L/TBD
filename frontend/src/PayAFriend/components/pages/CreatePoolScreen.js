@@ -1,12 +1,12 @@
 import axios from "axios";
 import { Alert, Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import CustomButton from '../common/Button.js'
 import { useUser } from "../../context/UserContext";
 
 
 const CreatePoolScreen = ({navigation}) => {
-    const userId = useUser();
+    const userId = useUser().userId !== null ? useUser().userId : 2;
     const [poolAmount, setPoolAmount] = useState(0);
     const handleAmountChange = (value) => {
         setPoolAmount( !isNaN(parseFloat(value)) ? parseFloat(value): 0);
