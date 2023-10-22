@@ -1,9 +1,12 @@
 import { Alert, Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import CustomButton from '../common/Button.js'
+import { useUser } from "../../context/UserContext";
 
 
 const PaymentScreen = ({route, navigation}) => {
+    const senderId = useUser();
+    const receiverId = route.userId;
     const [poolData, setPoolData] = useState({
         receiverId: null,
         receiverName: "Loading",
@@ -22,8 +25,6 @@ const PaymentScreen = ({route, navigation}) => {
             ]
         )
     }
-    const { userId } = route.params;
-
     return (
         <KeyboardAvoidingView
             keyboardShouldPersistTaps="handled"

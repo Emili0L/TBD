@@ -2,9 +2,11 @@ import axios from "axios";
 import { Alert, Platform, StyleSheet, Text, TextInput, View , Dimensions, ScrollView, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import CustomButton from '../common/Button.js'
+import { useUser } from "../../context/UserContext";
 
 
-const CreatePoolScreen = ({route, navigation}) => {
+const CreatePoolScreen = ({navigation}) => {
+    const userId = useUser();
     const [poolAmount, setPoolAmount] = useState(0);
     const handleAmountChange = (value) => {
         setPoolAmount( !isNaN(parseFloat(value)) ? parseFloat(value): 0);
@@ -36,7 +38,7 @@ const CreatePoolScreen = ({route, navigation}) => {
                 "http://172.16.220.49:8080/sessions",
                 {
                     amountTobePayedLeft: poolAmount,
-                    receiverID: 2,
+                    receiverID: userId,
                 },
                 {
                     headers: {
@@ -56,8 +58,6 @@ const CreatePoolScreen = ({route, navigation}) => {
             showErrorAlert();
         }
     }
-
-    const { userId } = route.params;
 
     return (
         <KeyboardAvoidingView
