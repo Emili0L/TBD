@@ -21,50 +21,27 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-/*    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<User> createUser(@RequestParam("name") String name,
-                                           @RequestParam(value = "deviceId", required = false) String deviceId,
-                                           @RequestParam(value = "image", required = false) MultipartFile image,
-                                           @RequestParam(value = "paypalCredentials", required = false) String paypalCredentials,
-                                           @RequestParam(value = "bankCredentials", required = false) String bankCredentials) {
-        // Handle the image file here
-        // You might want to save it and get its ID or URL to store in the User entity
-
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<User> createUser(@RequestParam("name") String name) {
         // Create a new User entity
         User user = new User();
         user.setName(name);
-        user.setDeviceId(deviceId);
-        user.setPaypalCredentials(paypalCredentials);
-        user.setBankCredentials(bankCredentials);
-
-        // Assuming you have a method in your service to handle the image and return its ID
-        //long imageId = userService.handleImage(image);
-        //user.setImageId(imageId);
 
         // Save the user
-        User newUser = userService.createUser(user);
-        return ResponseEntity.ok(newUser);
-    }*/
-
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
         User newUser = userService.createUser(user);
         return ResponseEntity.ok(newUser);
     }
 
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody User user) {
-
         Optional<User> optionalUser = userService.findUserById(user.getId());
 
-            if (optionalUser.isPresent()) {
-
-                User thisUser = optionalUser.get();
-
-                thisUser.setBankCredentials(user.getBankCredentials());
-                thisUser.setPaypalCredentials(user.getPaypalCredentials());
-               return ResponseEntity.ok(userRepository.save(thisUser));
-            }
+        if (optionalUser.isPresent()) {
+            User thisUser = optionalUser.get();
+            thisUser.setBankCredentials(user.getBankCredentials());
+            thisUser.setPaypalCredentials(user.getPaypalCredentials());
+            return ResponseEntity.ok(userRepository.save(thisUser));
+        }
         return ResponseEntity.badRequest().build();
     }
 }

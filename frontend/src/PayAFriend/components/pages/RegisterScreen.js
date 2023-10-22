@@ -41,7 +41,7 @@ const RegisterScreen = ({ navigation }) => {
 
     try {
       const response = await axios.post(
-        `http://172.16.220.49:8080/image/upload/${userId}`,
+        `http://172.16.220.109:8080/image/upload/${userId}`,
         formData,
         {
           headers: {
@@ -64,7 +64,7 @@ const RegisterScreen = ({ navigation }) => {
 
     try {
       const response = await axios.post(
-        "http://172.16.220.40:8080/users",
+        "http://172.16.220.109:8080/users",
         formData,
         {
           headers: {
