@@ -11,10 +11,12 @@ import Text from "../common/Text";
 import CustomTextInput from "../common/TextInput";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
+import { useUser } from "../../context/UserContext"; // Make sure this path is correct
 
 const RegisterScreen = ({ navigation }) => {
   const [image, setImage] = useState(null);
   const [username, setUsername] = useState("");
+  const { setUserId } = useUser(); // Using the useUser hook to access setUserId
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -29,18 +31,37 @@ const RegisterScreen = ({ navigation }) => {
     }
   };
 
+  const uploadImage = async (imageUri, userId) => {
+    const localUri = imageUri;
+    const filename = localUri.split("/").pop();
+    const match = /\.(\w+)$/.exec(filename);
+    const type = match ? `image/${match[1]}` : `image`;
+
+    const formData = new FormData();
+    formData.append("file", { uri: localUri, name: filename, type });
+
+    try {
+      const response = await axios.post(
+        `http://172.16.220.109:8080/image/upload/${userId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Image Upload Successful:", response.data);
+    } catch (error) {
+      console.error(
+        "Image Upload Failed:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
+
   const handleRegister = async () => {
     const formData = new FormData();
     formData.append("name", username);
-
-    if (image) {
-      const localUri = image;
-      const filename = localUri.split("/").pop();
-      const match = /\.(\w+)$/.exec(filename);
-      const type = match ? `image/${match[1]}` : `image`;
-
-      formData.append("image", { uri: localUri, name: filename, type });
-    }
 
     try {
       const response = await axios.post(
@@ -53,6 +74,13 @@ const RegisterScreen = ({ navigation }) => {
         }
       );
       console.log("Registration Successful:", response.data);
+      const userId = response.data.id;
+      setUserId(userId); // Setting the user ID in context
+
+      if (image) {
+        await uploadImage(image, userId);
+      }
+
       navigation.navigate("Home");
     } catch (error) {
       console.error(
