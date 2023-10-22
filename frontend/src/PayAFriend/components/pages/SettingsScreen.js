@@ -11,7 +11,6 @@ const SettingsScreen = ({ navigation }) => {
     // State to hold and manage the text input value
     const [inputPaypal, setPaypalValue] = useState('');
     const [inputBank, setBankValue] = useState('');
-    // const axios = require("axios")
 
     // Function to toggle modal visibility
     const togglePayPal = () => {
@@ -58,8 +57,6 @@ const SettingsScreen = ({ navigation }) => {
           body: JSON.stringify(data)
         }
       )
-      console.log(response)
-      // const response = await axios.put()
     }
 
 
