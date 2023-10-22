@@ -11,12 +11,22 @@ const SettingsScreen = ({ navigation }) => {
     // State to hold and manage the text input value
     const [inputPaypal, setPaypalValue] = useState('');
     const [inputBank, setBankValue] = useState('');
-
+    // const axios = require("axios")
 
     // Function to toggle modal visibility
     const togglePayPal = () => {
         setPaypalVisible(!isPaypalVisible);
     };
+
+    const submitPayPal = async () => {
+      await submit();
+      togglePayPal();
+    }
+
+    const submitBank = async () => {
+      await submit();
+      toggleBank();
+    }
 
     const toggleBank = () => {
       setBankVisible(!isBankVisible);
@@ -30,6 +40,27 @@ const SettingsScreen = ({ navigation }) => {
     const handleBankChange = (text) => {
       setBankValue(text);
     };
+
+    const submit = async () => {
+      let data = { id: 1 }
+      if (inputPaypal != '') {
+        data.paypalCredentials = inputPaypal;
+      }
+      if (inputBank != '') {
+        data.bankCredentials = inputBank;
+      }
+      const response = await fetch(
+        "http://172.16.220.49:8080/users", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data)
+        }
+      )
+      console.log(response)
+      // const response = await axios.put()
+    }
 
 
     // Function to render the popup modal with text input
@@ -50,7 +81,7 @@ const SettingsScreen = ({ navigation }) => {
                     />
                     <Button
                       style={styles.button}
-                      onPress={togglePayPal}
+                      onPress={submitPayPal}
                       title="Submit Details"
                     />
                     <Button
@@ -80,7 +111,7 @@ const SettingsScreen = ({ navigation }) => {
                   />
                   <Button
                     style={styles.button}
-                    onPress={toggleBank}
+                    onPress={submitBank}
                     title="Submit Details"
                   />
                   <Button
