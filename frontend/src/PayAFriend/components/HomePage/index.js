@@ -3,59 +3,44 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import Button from "../common/Button";
 import { useUser } from "../../context/UserContext";
 
-const HomePage = ({ navigation }) => {
-  const [isSending, setIsSending] = useState(false);
-  const { userId } = useUser();
-
-  const handleSendingButton = () => {
-    setIsSending(!isSending);
-  };
-
-  return (
-    <View style={styles.container}>
-      {/* Display User ID */}
-      {userId && <Text style={styles.userIdText}>User ID: {userId}</Text>}
-
-      <TouchableOpacity
-        style={StyleSheet.compose(styles.textContainer, styles.plane)}
-        onPress={handleSendingButton}
-      >
-        <Text style={StyleSheet.compose(styles.small, styles.white)}>
-          Is it time to
-        </Text>
-        <Text style={StyleSheet.compose(styles.large, styles.yellow)}>
-          PayAFriend?
-        </Text>
-        {isSending && (
-          <View>
-            <Image
-              style={styles.image}
-              source={require("../../assets/arrow-white.png")}
+const HomePage = ({navigation}) => {
+    const [isSending, setIsSending] = useState(false);
+    const handleSendingButton = () => {
+      setIsSending(!isSending);
+    };
+    return (
+        <View style={styles.container}>
+            <Button
+              title="Settings"
+              onPress={() => {
+                navigation.navigate("Settings", {userId: 12345});
+            }}
             />
-            <Text
-              style={StyleSheet.compose(
-                styles.small,
-                styles.white,
-                styles.mt20
-              )}
-            >
-              Scan tag
-            </Text>
-          </View>
-        )}
-      </TouchableOpacity>
-      <View style={styles.buttonWrapper}>
-        <Button onPress={handleSendingButton} title="Send Money" />
-        <Button
-          onPress={() => {
-            navigation.navigate("CreatePool", { userId: 12345 });
-          }}
-          title="Create Pool"
-        />
-      </View>
-    </View>
-  );
-};
+            <TouchableOpacity style={StyleSheet.compose(styles.textContainer, styles.plane)} onPress={handleSendingButton}>
+                <Text style={StyleSheet.compose(styles.small, styles.white)}>Is it time to</Text>
+                <Text style={StyleSheet.compose(styles.large, styles.yellow)}>PayAFriend?</Text>
+                { isSending && (
+                  <View>
+                    <Image style={styles.image} source={require('../../assets/arrow-white.png')}/>
+                    <Text style={StyleSheet.compose(styles.small, styles.white, styles.mt20)}>Scan tag</Text>
+                  </View>
+                )}
+            </TouchableOpacity>
+            <View style={styles.buttonWrapper}>
+                <Button
+                    onPress={handleSendingButton}
+                    title="Send Money"
+                />
+                <Button
+                    onPress={() => {
+                        navigation.navigate("CreatePool", {userId: 12345});
+                    }}
+                    title="Create Pool"
+                />
+            </View>
+        </View>
+    );
+}
 
 const styles = StyleSheet.create({
   container: {

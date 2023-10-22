@@ -9,7 +9,8 @@ import WelcomeScreen from "./components/pages/WelcomeScreen.js";
 import PaymentScreen from "./components/pages/PaymentScreen";
 import * as Linking from "expo-linking";
 import CreatePoolScreen from "./components/pages/CreatePoolScreen";
-import HomePage from "./components/HomePage/index.js";
+import HomePage from './components/HomePage/index.js';
+import SettingsScreen from './components/pages/SettingsScreen.js'
 import { UserProvider } from "./context/UserContext";
 
 const Stack = createNativeStackNavigator();
@@ -39,12 +40,14 @@ export default function App() {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="Home" component={HomePage} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="Payment" component={PaymentScreen} options={{presentation: "modal"}} />
             <Stack.Screen name="CreatePool" component={CreatePoolScreen} options={{presentation: "modal"}} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
   );
+
 }
 
 const HomeScreen = ({ navigation }) => {
